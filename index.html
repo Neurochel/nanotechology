@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нанотехнології України</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --main-color: #0057b7;
+            --second-color: #ffd700;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --accent-color: #ff4757;
+            --dark-blue: #003b7a;
+            --light-blue: #e0f7ff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Montserrat', sans-serif;
+            --alt-font: 'Roboto Slab', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+        }
+
+        .intro-screen {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, var(--dark-blue) 0%, #001529 100%);
+            position: relative;
+            z-index: 100;
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+        }
+
+        .intro-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .intro-particle {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .phone-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone {
+            width: 200px;
+            height: 200px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 4px solid var(--second-color);
+            transition: var(--transition);
+            animation: pulse 2s infinite, rotate 20s linear infinite;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3),
+                        inset 0 0 20px rgba(255, 215, 0, 0.2);
+            position: relative;
+        }
+
+        .phone::before, .phone::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid var(--second-color);
+            animation: pulse-ring 2s infinite;
+            opacity: 0;
+        }
+
+        .phone::after {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .phone:hover {
+            transform: scale(1.1) rotate(0deg);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.7),
+                        inset 0 0 30px rgba(255, 215, 0, 0.4);
+            animation-play-state: paused;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7),
+                            inset 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(255, 215, 0, 0),
+                            inset 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0),
+                            inset 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--second-color);
+            font-size: 16px;
+            font-weight: 600;
+            white-space: nowrap;
+            animation: fadeInOut 2s infinite;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .stickman-container {
+            position: fixed;
+            left: -100px;
+            bottom: 100px;
+            z-index: 101;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: scale(0);
+        }
+
+        .stickman {
+            width: 120px;
+            height: 180px;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .stickman-head {
+            width: 40px;
+            height: 40px;
+            background-color: var(--second-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 40px;
+            animation: headBob 2s infinite;
+        }
+
+        .stickman-body {
+            width: 4px;
+            height: 60px;
+            background-color: var(--second-color);
+            position: absolute;
+            top: 40px;
+            left: 58px;
+        }
+
+        .stickman-arm-left, .stickman-arm-right {
+            width: 40px;
+            height: 4px;
+            background-color: var(--second-color);
+            position: absolute;
+            top: 60px;
+        }
+
+        .stickman-arm-left {
+            left: 20px;
+            transform: rotate(30deg);
+            transform-origin: right center;
+            animation: waveLeft 2s infinite;
+        }
+
+        .stickman-arm-right {
+            left: 60px;
+            transform: rotate(-30deg);
+            transform-origin: left center;
+            animation: waveRight 1.5s infinite;
+        }
+
+        .stickman-leg-left, .stickman-leg-right {
+            width: 4px;
+            height: 50px;
+            background-color: var(--second-color);
+            position: absolute;
+            top: 100px;
+        }
+
+        .stickman-leg-left {
+            left: 48px;
+            transform: rotate(15deg);
+            animation: stepLeft 1s infinite;
+        }
+
+        .stickman-leg-right {
+            left: 68px;
+            transform: rotate(-15deg);
+            animation: stepRight 1s infinite;
+        }
+
+        @keyframes headBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(2px); }
+        }
+
+        @keyframes waveLeft {
+            0%, 100% { transform: rotate(30deg); }
+            50% { transform: rotate(45deg); }
+        }
+
+        @keyframes waveRight {
+            0%, 100% { transform: rotate(-30deg); }
+            50% { transform: rotate(-45deg); }
+        }
+
+        @keyframes stepLeft {
+            0%, 100% { transform: rotate(15deg); }
+            50% { transform: rotate(25deg); }
+        }
+
+        @keyframes stepRight {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(-25deg); }
+        }
+
+        .stickman-accessory {
+            width: 60px;
+            height: 20px;
+            background-color: rgba(255, 215, 0, 0.5);
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            border-radius: 5px;
+            transform: rotate(-10deg);
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -80px;
+            left: 100px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 280px;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.5s, transform 0.5s ease;
+            transform: translateY(20px);
+            z-index: 10;
+        }
+
+        .speech-bubble p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .speech-bubble:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+
+        .choice-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .choice-button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: var(--body-font);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .choice-button:hover::before {
+            transform: translateX(0);
+        }
+
+        .yes-button {
+            background: linear-gradient(45deg, var(--main-color), var(--dark-blue));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 87, 183, 0.3);
+        }
+
+        .yes-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 87, 183, 0.4);
+        }
+
+        .no-button {
+            background: linear-gradient(45deg, #e0e0e0, #cfcfcf);
+            color: var(--text-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 99;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(100%);
+        }
+
+        .content-active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle i {
+            font-size: 24px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --light-blue: #1a3a5f;
+        }
+
+        .dark-mode .theme-toggle {
+            background: linear-gradient(135deg, #333, #222);
+        }
+
+        .dark-mode .theme-toggle i {
+            color: var(--second-color);
+        }
+
+        .dark-mode .section {
+            background: #1e1e1e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode .term {
+            background-color: rgba(255, 215, 0, 0.15);
+            color: var(--second-color);
+        }
+
+        .dark-mode .section p,
+        .dark-mode .info-box p {
+            color: #bbb;
+        }
+
+        .dark-mode .tooltip {
+            background: #2a2a2a;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .dark-mode .tooltip p {
+            color: #ddd;
+        }
+
+        .dark-mode .info-box {
+            background: #1a2736;
+            border-color: var(--second-color);
+        }
+
+        .dark-mode .info-box h3 {
+            color: var(--second-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .header-active .header-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header h1 {
+            font-size: 5.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, white, var(--second-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 6px;
+            background: var(--second-color);
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.6rem;
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.6;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .nano-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(1px);
+        }
+
+        .float-animation {
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .mousemove-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        .mouse-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: var(--second-color);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 70px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section {
+            flex: 1 1 400px;
+            margin: 25px;
+            padding: 45px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            transform: translateY(50px);
+            opacity: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .section.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--main-color), var(--second-color));
+            border-radius: 3px 3px 0 0;
+        }
+
+        .section:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--main-color);
+            margin-bottom: 30px;
+            font-size: 2.4rem;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--second-color);
+            border-radius: 2px;
+        }
+
+        .section p {
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-size: 17px;
+            color: var(--text-color);
+            font-weight: 400;
+        }
+
+        .term {
+            display: inline-block;
+            position: relative;
+            padding: 2px 6px;
+            margin: 0 2px;
+            background-color: rgba(0, 87, 183, 0.08);
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--main-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .term:hover {
+            background-color: rgba(0, 87, 183, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .tooltip {
+            position: fixed;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 320px;
+            z-index: 1005; /* Increased z-index */
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            transform: translateY(10px);
+            border-left: 4px solid var(--main-color);
+        }
+
+        .tooltip.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .tooltip h4 {
+            color: var(--main-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .tooltip p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            color: var(--text-color);
+        }
+
+        .simulation-container {
+            width: 100%;
+            height: 460px;
+            background: linear-gradient(to bottom, #000913, #000000);
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            flex: 1 1 100%;
+            border: 1px solid rgba(0, 87, 183, 0.1);
+        }
+
+        .simulation-container::before {
+            content: attr(data-title);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            z-index: 10;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            font-family: var(--heading-font);
+        }
+
+        .simulation-container::after {
+            content: attr(data-description);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            z-index: 10;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            font-family: var(--body-font);
+            font-weight: 500;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        #rna-simulation,
+        #nano-delivery-simulation,
+        #crispr-simulation {
+            width: 100%;
+            height: 100%;
+        }
+
+        .interaction-prompt {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 15px;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .simulation-container:hover .interaction-prompt {
+            opacity: 0;
+        }
+
+        .control-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            z-index: 20;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            margin-left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .control-btn i {
+            color: white;
+            font-size: 16px;
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.1);
+        }
+
+        .info-box {
+            position: relative;
+            padding: 35px;
+            background: var(--light-blue);
+            border-radius: 20px;
+            margin: 40px 0;
+            flex: 1 1 100%;
+            border-left: 5px solid var(--main-color);
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .info-box.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .info-box h3 {
+            color: var(--main-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: var(--heading-font);
+        }
+
+        .info-box p {
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .parallax-section {
+            position: relative;
+            height: 450px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .parallax-content {
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 1000px;
+        }
+
+        .parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,59,122,0.7);
+            z-index: 1;
+        }
+
+        .parallax-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 800;
+        }
+
+        .parallax-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--dark-blue) 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--second-color);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        footer p {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .footer-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .scene-nav {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 15px 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(-50%) translateX(120px); /* Initial hide: off-screen to the right */
+        }
+
+        .content-active .scene-nav {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0); /* Slide in from the right */
+        }
+
+        .dark-mode .scene-nav {
+            background: rgba(30, 30, 30, 0.7); /* Darker background for dark mode */
+        }
+
+        .nav-item {
+            padding: 10px 15px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: var(--transition);
+            font-size: 14px;
+            margin: 5px 0;
+            text-align: left; /* Align text to the left for vertical nav */
+            position: relative;
+            display: flex; /* For aligning icon and text if you add icons */
+            align-items: center;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-item.active {
+            background: var(--main-color);
+            color: white;
+            box-shadow: 0 3px 10px rgba(0, 87, 183, 0.2);
+        }
+
+        .nav-item.active::before { /* Active indicator */
+            content: '';
+            position: absolute;
+            left: -8px; 
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background-color: var(--second-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .nav-item.active {
+            background: var(--second-color);
+            color: var(--dark-blue);
+        }
+        .dark-mode .nav-item.active::before {
+            background-color: var(--main-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--main-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 87, 183, 0.3);
+            transform: translateY(100px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dark-mode .back-to-top {
+            background: var(--second-color);
+            color: var(--dark-blue);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 991px) {
+            header h1 {
+                font-size: 4rem;
+            }
+
+            header p {
+                font-size: 1.3rem;
+            }
+
+            .sections {
+                padding: 50px 30px;
+            }
+
+            .section {
+                margin: 15px;
+                padding: 30px;
+            }
+
+            .parallax-section h2 {
+                font-size: 3rem;
+            }
+
+            .scene-nav {
+                right: 15px; /* Adjust for smaller screens */
+                padding: 10px 6px;
+            }
+
+            .nav-item {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .nav-item.active::before {
+                height: 18px;
+                left: -6px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 150px 0 100px;
+            }
+
+            header h1 {
+                font-size: 3.2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .simulation-container {
+                height: 350px;
+            }
+
+            .parallax-section {
+                height: 350px;
+                background-attachment: scroll;
+            }
+
+            .parallax-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .scene-nav {
+                /* For very small screens, consider moving it back to bottom or making icons only */
+                /* For now, make it more compact */
+                right: 10px;
+                padding: 8px 4px;
+                border-radius: 10px;
+            }
+
+            .nav-item {
+                padding: 7px 10px;
+                font-size: 11px; /* Further reduce font size */
+                margin: 3px 0;
+                font-weight: 500;
+            }
+             .nav-item.active::before {
+                height: 14px;
+                left: -5px;
+                width: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .phone {
+                width: 150px;
+                height: 150px;
+            }
+
+            .speech-bubble {
+                width: 240px;
+                left: 80px;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .parallax-section h2 {
+                font-size: 2rem;
+            }
+            /* Hide text in nav items, show only if there were icons, or make it very small */
+             .scene-nav {
+                display: none; /* Example: Hide on very small screens if it's too obtrusive */
+                               /* Or, implement an icon-only version */
+            }
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-blue);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            border: 6px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--second-color);
+            animation: spin 1s infinite linear;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: pulse-text 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .loaded .loading-screen {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-100%);
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--second-color), var(--main-color));
+            width: 0%;
+            transition: width 0.2s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline-container {
+            position: relative;
+            margin: 50px 0;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--main-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+            margin-left: 50%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -13px;
+            width: 30px;
+            height: 30px;
+            background: var(--second-color);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: auto;
+            left: -13px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .dark-mode .timeline-content {
+            background: #1e1e1e;
+        }
+
+        .dark-mode .timeline-line {
+            background: var(--second-color);
+        }
+
+        .timeline-date {
+            color: var(--main-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: var(--alt-font);
+        }
+
+        .dark-mode .timeline-date {
+            color: var(--second-color);
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .dark-mode .timeline-title {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-right: 0;
+                padding-left: 50px;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 50px;
+            }
+
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 6px;
+                right: auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">ЗАВАНТАЖЕННЯ НАНО-СВІТУ...</div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-particles" id="introParticles"></div>
+        <div class="phone-container">
+            <div class="phone" id="phone"></div>
+            <div class="tap-hint">Натисніть для зв'язку</div>
+        </div>
+    </div>
+
+    <div class="stickman-container" id="stickmanContainer">
+        <div class="stickman">
+            <div class="stickman-head"></div>
+            <div class="stickman-body"></div>
+            <div class="stickman-arm-left"></div>
+            <div class="stickman-arm-right"></div>
+            <div class="stickman-leg-left"></div>
+            <div class="stickman-leg-right"></div>
+            <div class="stickman-accessory"></div>
+        </div>
+        <div class="speech-bubble" id="speechBubble">
+            <p>Доброго дня! Я ваш цифровий помічник. Бажаєте дізнатися про неймовірний світ нанотехнологій?</p>
+            <div class="choice-buttons">
+                <button class="choice-button yes-button" id="yesButton">Так</button>
+                <button class="choice-button no-button" id="noButton">Ні</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </div>
+
+        <div class="back-to-top" id="backToTop">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
+        <header id="header">
+            <div class="nano-particles" id="particles"></div>
+            <div class="header-content">
+                <h1>Нанотехнології Майбутнього</h1>
+                <p>Відкрийте для себе революційний світ на молекулярному рівні</p>
+            </div>
+        </header>
+
+        <div class="scene-nav" id="sceneNav">
+            <div class="nav-item active" data-section="diagnostics">Діагностика</div>
+            <div class="nav-item" data-section="delivery">Доставка ліків</div>
+            <div class="nav-item" data-section="genetic">Генна інженерія</div>
+            <div class="nav-item" data-section="regenerative">Регенерація</div>
+            <div class="nav-item" data-section="future">Майбутнє</div>
+        </div>
+
+        <div class="sections" id="sectionsContainer">
+            <div class="section" data-delay="0" id="diagnostics">
+                <h2>Діагностика на нанорівні</h2>
+                <p>Уявіть собі діагностику на рівні, про який раніше можна було лише мріяти. Ми вже створюємо крихітні, менші за <span class="term" data-tooltip="Віруси - це неклітинні інфекційні агенти, що можуть розмножуватися лише всередині живих клітин. Розмір вірусів коливається від 20 до 300 нанометрів.">вірус</span>, <span class="term" data-tooltip="Наносенсори - це аналітичні пристрої нанометрового розміру, які використовуються для передачі інформації про наноречовини до світу макророзмірів.">наносенсори</span>, які, потрапляючи в кров, діють як молекулярні шпигуни.</p>
+
+                <p>Вони вміють «винюхувати» перші, ледь помітні молекулярні «шепоти» хвороби – наприклад, специфічні <span class="term" data-tooltip="Білки - це біологічні макромолекули, що складаються з амінокислот. Вони виконують безліч функцій в організмі, включаючи каталіз метаболічних реакцій, реплікацію ДНК, транспорт молекул і структурну підтримку клітин.">білки</span>, що виділяються раковими клітинами на ранніх стадіях, або сліди вірусної атаки задовго до появи перших симптомів.</p>
+
+                <p>Ці наночастинки, зв'язавшись із цільовою молекулою, можуть змінювати свій колір або <span class="term" data-tooltip="Флуоресценція - це явище, при якому речовина поглинає світло на одній довжині хвилі і випромінює його на іншій, довшій довжині хвилі. У біомедицині використовується для візуалізації біологічних структур.">флуоресценцію</span>, подаючи сигнал, який легко зчитується. Це означає, що ми можемо «спіймати» недугу тоді, коли вона ще абсолютно беззахисна.</p>
+            </div>
+
+            <div class="simulation-container" data-title="3D Симуляція РНК" data-description="Інтерактивна модель РНК молекули. Спробуйте перетягнути та обертати модель для вивчення її структури.">
+                <canvas id="rna-simulation"></canvas>
+                <div class="interaction-prompt">Клікніть та перетягніть для взаємодії</div>
+                <div class="control-panel">
+                    <div class="control-btn" id="rnaZoomIn"><i class="fas fa-plus"></i></div>
+                    <div class="control-btn" id="rnaZoomOut"><i class="fas fa-minus"></i></div>
+                    <div class="control-btn" id="rnaReset"><i class="fas fa-redo"></i></div>
+                </div>
+            </div>
+
+            <div class="section" data-delay="200" id="delivery">
+                <h2>Адресна доставка ліків</h2>
+                <p>Справжній прорив – це <span class="term" data-tooltip="Адресна доставка ліків - це метод, який дозволяє доставляти лікарські засоби до конкретних ділянок організму, мінімізуючи вплив на здорові тканини.">адресна доставка ліків</span>. Замість того, щоб «бомбардувати» весь організм токсичною <span class="term" data-tooltip="Хіміотерапія - це вид лікування, що використовує хімічні речовини для знищення швидко розмножуваних клітин, таких як ракові. Нажаль, впливає також і на здорові клітини, що швидко розмножуються.">хіміотерапією</span>, вбиваючи і хворі, і здорові клітини, ми тепер пакуємо ліки в наноконтейнери – <span class="term" data-tooltip="Ліпосоми - це сферичні везикули, утворені з фосфоліпідного бішару. Вони використовуються для транспортування ліків, оскільки можуть проникати через клітинні мембрани.">ліпосоми</span>, полімерні сфери, золоті наночастинки.</p>
+
+                <p>Ці «кур'єри» мають на своїй поверхні спеціальні молекули-«ключі» (наприклад, <span class="term" data-tooltip="Антитіла - це білки імунної системи, які розпізнають і нейтралізують чужорідні об'єкти, такі як бактерії та віруси.">антитіла</span>), які розпізнають лише «замки» на поверхні ракових клітин або бактерій. Така нанокапсула мандрує організмом, ігноруючи здорові тканини, і вивільняє свій смертоносний вантаж точно в ціль.</p>
+
+                <p>Результат? Максимальна ефективність лікування при мінімальних побічних ефектах. Це вже не експерименти – це клінічна практика для деяких видів раку, і список розширюється. Більше того, ми навчилися «протискувати» такі наноконтейнери крізь <span class="term" data-tooltip="Гематоенцефалічний бар'єр - це фізіологічний бар'єр між кровоносними судинами і центральною нервовою системою, який захищає мозок від патогенів і токсинів, що циркулюють у крові.">гематоенцефалічний бар'єр</span>, цей природний щит мозку, доставляючи ліки для боротьби з хворобами Альцгеймера чи Паркінсона туди, куди раніше дістатися було майже неможливо.</p>
+            </div>
+
+            <div class="simulation-container" data-title="Симуляція адресної доставки ліків" data-description="Спостерігайте, як наночастинки з ліками знаходять і атакують лише ракові клітини, залишаючи здорові тканини недоторканими.">
+                <canvas id="nano-delivery-simulation"></canvas>
+                <div class="interaction-prompt">Натисніть для запуску симуляції</div>
+                <div class="control-panel">
+                    <div class="control-btn" id="deliveryStart"><i class="fas fa-play"></i></div>
+                    <div class="control-btn" id="deliveryPause"><i class="fas fa-pause"></i></div>
+                    <div class="control-btn" id="deliveryReset"><i class="fas fa-redo"></i></div>
+                </div>
+            </div>
+
+            <div class="info-box" data-delay="300">
+                <h3>Ви знали?</h3>
+                <p>Найменші функціональні наночастинки, що використовуються в медицині, мають розмір всього 2-3 нанометри. Для порівняння: діаметр людської волосини становить приблизно 80,000-100,000 нанометрів. Це означає, що в перетині однієї волосини може розміститися до 40,000 таких наночастинок!</p>
+            </div>
+
+            <div class="section" data-delay="400" id="genetic">
+                <h2>Генна інженерія і нанотехнології</h2>
+                <p><span class="term" data-tooltip="Генна інженерія - це сукупність методів, які дозволяють маніпулювати генетичним матеріалом організмів шляхом видалення, модифікації або додавання генів.">Генна інженерія</span>, зокрема революційна технологія <span class="term" data-tooltip="CRISPR-Cas9 - це технологія редагування генома, що дозволяє вносити зміни в ДНК з високою точністю. Вона заснована на імунній системі бактерій, які використовують цей механізм для захисту від вірусів.">CRISPR-Cas9</span>, цей молекулярний «скальпель» для редагування <span class="term" data-tooltip="ДНК (дезоксирибонуклеїнова кислота) - це молекула, що містить генетичні інструкції, необхідні для розвитку, функціонування і розмноження всіх відомих організмів.">ДНК</span>, теж отримує потужний імпульс від нанотехнологій.</p>
+
+                <p>Адже доставити цей інструмент точно до ядра потрібної клітини – завдання не з легких. І тут на допомогу приходять <span class="term" data-tooltip="Наноносії - це наночастинки, які використовуються для транспортування генетичного матеріалу або ліків до цільових клітин.">наноносії</span>, які захищають крихку генетичну конструкцію і забезпечують її проникнення всередину клітини. Це відкриває шлях до лікування спадкових захворювань на фундаментальному рівні.</p>
+            </div>
+
+            <div class="simulation-container" data-title="CRISPR-Cas9 в дії" data-description="Візуалізація процесу редагування ДНК за допомогою CRISPR-Cas9. Спостерігайте, як механізм знаходить і вирізає пошкоджений фрагмент ДНК.">
+                <canvas id="crispr-simulation"></canvas>
+                <div class="interaction-prompt">Клікніть для запуску процесу редагування</div>
+                <div class="control-panel">
+                    <div class="control-btn" id="crisprStart"><i class="fas fa-play"></i></div>
+                    <div class="control-btn" id="crisprPause"><i class="fas fa-pause"></i></div>
+                    <div class="control-btn" id="crisprReset"><i class="fas fa-redo"></i></div>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1959</div>
+                        <h3 class="timeline-title">Початок ери нанотехнологій</h3>
+                        <p>Річард Фейнман у своїй знаменитій лекції "Там внизу повно місця" вперше описав можливість маніпулювання окремими атомами.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1981</div>
+                        <h3 class="timeline-title">Винахід скануючого тунельного мікроскопа</h3>
+                        <p>Герд Бінніг і Генріх Рорер створили пристрій, який дозволив "побачити" окремі атоми, що відкрило нові можливості для наномедицини.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1995</div>
+                        <h3 class="timeline-title">Перші ліпосомні препарати</h3>
+                        <p>Схвалення першого ліпосомного препарату Doxil для лікування раку - перший крок у нанофармацевтиці та адресній доставці ліків.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2012</div>
+                        <h3 class="timeline-title">Прорив CRISPR-Cas9</h3>
+                        <p>Відкриття методу редагування генома CRISPR-Cas9, який згодом був поєднаний з нанотехнологіями для точного доставлення до клітин.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020-2025</div>
+                        <h3 class="timeline-title">Інтегровані наномедичні системи</h3>
+                        <p>Розробка комплексних наномедичних платформ, що поєднують діагностику, доставку ліків та моніторинг ефективності лікування в реальному часі.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-delay="600" id="regenerative">
+                <h2>Регенеративна медицина</h2>
+                <p>А що скажете про <span class="term" data-tooltip="Регенеративна медицина - це галузь медицини, яка займається відновленням або заміною пошкоджених клітин, тканин або органів.">регенеративну медицину</span>? Ми вже друкуємо на <span class="term" data-tooltip="3D-біопринтери - це пристрої, які використовують технологію 3D-друку для створення тканиноподібних структур, використовуючи клітини та біоматеріали.">3D-біопринтерах</span> нановолоконні «риштування», що імітують структуру природного <span class="term" data-tooltip="Позаклітинний матрикс - це позаклітинна частина тканини, яка забезпечує структурну та біохімічну підтримку клітинам.">позаклітинного матриксу</span>.</p>
+
+                <p>На цих каркасах, просочених наночастинками, що вивільняють <span class="term" data-tooltip="Фактори росту - це природні речовини, здатні стимулювати клітинний ріст, розмноження та диференціацію.">фактори росту</span>, клітини почуваються «як удома» і починають формувати нову тканину – шкіру для опікових хворих, хрящі для пошкоджених суглобів, а в перспективі – навіть фрагменти судин чи нервів. Це вже не латання дірок, а справжнє вирощування «запчастин» для організму.</p>
+            </div>
+
+            <div class="parallax-section" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none"><rect width="1000" height="1000" fill="%23003b7a"/><circle cx="200" cy="200" r="100" fill="%230057b7"/><circle cx="800" cy="800" r="150" fill="%230057b7"/><circle cx="500" cy="400" r="70" fill="%23ffd700"/><circle cx="300" cy="700" r="120" fill="%230057b7"/><circle cx="700" cy="300" r="80" fill="%23ffd700"/></svg>');">
+                <div class="parallax-content">
+                    <h2>Революція в медицині</h2>
+                    <p>Нанотехнології змінюють наше розуміння медицини, дозволяючи нам працювати на рівні окремих молекул і клітин, відкриваючи безпрецедентні можливості для діагностики, лікування та профілактики захворювань. Об'єднання нанотехнологій із генною інженерією, біоінформатикою та системною біологією створює новий інтегрований підхід до медицини майбутнього.</p>
+                </div>
+            </div>
+
+            <div class="section" data-delay="800" id="future">
+                <h2>Майбутнє нанотехнологій</h2>
+                <p>Щодо найближчих планів – це, по-перше, вдосконалення існуючих методів. Ми прагнемо створити ще «розумніші» наночастинки, здатні не лише доставляти ліки, а й діагностувати, а потім, отримавши сигнал ззовні (наприклад, світловий чи магнітний), вивільняти препарат або навіть локально нагріватися, знищуючи патогенні клітини. Це так звана <span class="term" data-tooltip="Тераностика - це підхід, що поєднує терапію та діагностику в одному препараті. Наночастинки можуть одночасно виявляти хворобу і лікувати її.">тераностика</span> – діагностика і терапія в одному флаконі.</p>
+
+                <p>По-друге, активно розробляються <span class="term" data-tooltip="Біогібридні наносистеми - це комбінація біологічних компонентів (наприклад, клітин або ферментів) з наноматеріалами для створення систем з новими функціями.">біогібридні наносистеми</span>. Наприклад, бактерії, «обвішані» наночастинками з ліками, можуть самостійно знаходити пухлини, орієнтуючись на низький вміст кисню, і доставляти туди свій вантаж.</p>
+
+                <p>Забудьте поки про автономних роботів-хірургів з фантастичних фільмів. Але керовані ззовні магнітним полем наноструктури, здатні механічно руйнувати тромби або розчищати бляшки в судинах, – це вже цілком реальна перспектива найближчих років. Також ведуться роботи над наносенсорами, які можна буде імплантувати під шкіру для безперервного моніторингу рівня глюкози, лактату чи інших важливих біомаркерів, передаючи дані на смартфон лікаря.</p>
+
+                <p>Звісно, є й виклики: питання довгострокової безпеки наноматеріалів, їх виведення з організму, вартість виробництва. Але потенціал настільки величезний, що науковці всього світу працюють над вирішенням цих проблем. <span class="term" data-tooltip="Нанотехнології в біології - це застосування наноматеріалів та наноінструментів для вивчення та маніпулювання біологічними системами на молекулярному та клітинному рівнях.">Нанотехнології в біології</span> – це не обіцянки далекого майбутнього, а напружена робота, що кипить у лабораторіях просто зараз, приносячи результати, які ще вчора здавалися дивом. Це справжня наукова магія, що розгортається на наших очах.</p>
+            </div>
+
+            <div class="info-box" data-delay="900">
+                <h3>Перспективи розвитку</h3>
+                <p>До 2030 року очікується, що глобальний ринок нанотехнологій у медицині досягне 350 мільярдів доларів. Основними напрямками розвитку стануть нейроінтерфейси на основі наноелектродів, біоінтегровані наносенсори для тривалого моніторингу здоров'я, та програмовані нанороботи для внутрішньоклітинних маніпуляцій. Протягом наступного десятиліття ми побачимо перші клінічні випробування багатофункціональних наночастинок, здатних самостійно приймати "рішення" на основі аналізу мікрооточення.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-particles" id="footerParticles"></div>
+            <div class="footer-content">
+                <h2>Нанотехнології України</h2>
+                <p>Відкриваємо майбутнє медицини на молекулярному рівні</p>
+                <p>© 2025 Нанотехнології України. Всі права захищені.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="tooltip" id="tooltip">
+        <h4>Термін</h4>
+        <p>Визначення терміну з'явиться тут.</p>
+    </div>
+
+    <div class="mousemove-particles" id="mousemoveParticles"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set body loaded after a short delay to trigger animations
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1500);
+
+            // Variables
+            const phone = document.getElementById('phone');
+            const introScreen = document.getElementById('introScreen');
+            const stickmanContainer = document.getElementById('stickmanContainer');
+            const speechBubble = document.getElementById('speechBubble');
+            const yesButton = document.getElementById('yesButton');
+            const noButton = document.getElementById('noButton');
+            const mainContent = document.getElementById('mainContent');
+            const header = document.getElementById('header');
+            const themeToggle = document.getElementById('themeToggle');
+            const tooltip = document.getElementById('tooltip');
+            const progressBar = document.getElementById('progressBar');
+            const sections = document.querySelectorAll('.section'); 
+            const infoBoxes = document.querySelectorAll('.info-box'); 
+            const terms = document.querySelectorAll('.term');
+            const backToTop = document.getElementById('backToTop');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            // Loading screen particles
+            createIntroParticles();
+
+            // Create particles for the header
+            createHeaderParticles();
+
+            // Create footer particles
+            createFooterParticles();
+
+            // Create mouse movement particles
+            setupMouseParticles();
+
+            mainContent.addEventListener('scroll', () => {
+                updateProgressBar();
+                revealSections();
+                toggleBackToTop();
+            });
+
+            themeToggle.addEventListener('click', toggleTheme);
+            backToTop.addEventListener('click', scrollToTop);
+            setupNavigation();
+            setupTooltips();
+
+            phone.addEventListener('click', () => {
+                phone.style.animation = 'none';
+                phone.style.transform = 'scale(0.9) rotate(0deg)';
+
+                setTimeout(() => {
+                    introScreen.style.transform = 'translateY(-100vh)';
+
+                    setTimeout(() => {
+                        stickmanContainer.style.opacity = '1';
+                        stickmanContainer.style.left = '50px';
+                        stickmanContainer.style.transform = 'scale(1)';
+
+                        setTimeout(() => {
+                            speechBubble.style.opacity = '1';
+                            speechBubble.style.transform = 'translateY(0)';
+                        }, 500);
+                    }, 800);
+                }, 300);
+            });
+
+            yesButton.addEventListener('click', () => {
+                speechBubble.style.opacity = '0';
+                speechBubble.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    stickmanContainer.style.left = '105%';
+
+                    setTimeout(() => {
+                        mainContent.classList.add('content-active');
+                        header.classList.add('header-active');
+
+                        // Initialize simulations (DO NOT TOUCH)
+                        initRNASimulation();
+                        initNanoDeliverySimulation();
+                        initCRISPRSimulation();
+
+                        setTimeout(() => {
+                            updateProgressBar(); 
+                            revealSections();    
+                            toggleBackToTop();   
+                        }, 600); 
+                    }, 1000);
+                }, 500);
+            });
+
+            noButton.addEventListener('click', () => {
+                speechBubble.style.opacity = '0';
+                speechBubble.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    stickmanContainer.style.left = '-200px';
+                    stickmanContainer.style.transform = 'scale(0)';
+
+                    setTimeout(() => {
+                        introScreen.style.transform = 'translateY(0)';
+                        phone.style.animation = 'pulse 2s infinite, rotate 20s linear infinite';
+                        phone.style.transform = 'scale(1)';
+                    }, 1000);
+                }, 500);
+            });
+
+            // Functions
+            function createIntroParticles() {
+                const container = document.getElementById('introParticles');
+                if (!container) return;
+                for (let i = 0; i < 100; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('intro-particle');
+                    const size = Math.random() * 5 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.opacity = (Math.random() * 0.5 + 0.2).toString();
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+                    particle.style.animation = `float ${duration}s infinite linear`;
+                    particle.style.animationDelay = `${delay}s`;
+                    container.appendChild(particle);
+                }
+            }
+
+            function createHeaderParticles() {
+                const container = document.getElementById('particles');
+                if (!container) return;
+                for (let i = 0; i < 80; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 8 + 3;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.opacity = (Math.random() * 0.6 + 0.2).toString();
+                    const duration = Math.random() * 30 + 15;
+                    const delay = Math.random() * 10;
+                    particle.style.animation = `float ${duration}s infinite linear`;
+                    particle.style.animationDelay = `${delay}s`;
+                    container.appendChild(particle);
+                }
+            }
+
+            function createFooterParticles() {
+                const container = document.getElementById('footerParticles');
+                if (!container) return;
+                for (let i = 0; i < 60; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 6 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.opacity = (Math.random() * 0.5 + 0.1).toString();
+                    const duration = Math.random() * 25 + 10;
+                    const delay = Math.random() * 8;
+                    particle.style.animation = `float ${duration}s infinite linear`;
+                    particle.style.animationDelay = `${delay}s`;
+                    container.appendChild(particle);
+                }
+            }
+
+            function setupMouseParticles() {
+                const container = document.getElementById('mousemoveParticles');
+                if (!container) return;
+                const particles = [];
+
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('mouse-particle');
+                    container.appendChild(particle);
+                    particles.push({ element: particle, active: false });
+                }
+
+                function getInactiveParticle() {
+                    for (let i = 0; i < particles.length; i++) {
+                        if (!particles[i].active) return particles[i];
+                    }
+                    return null;
+                }
+
+                document.addEventListener('mousemove', (e) => {
+                    if (Math.random() > 0.7) {
+                        const particleObj = getInactiveParticle();
+                        if (particleObj) {
+                            const particleEl = particleObj.element;
+                            const size = Math.random() * 6 + 2;
+                            particleEl.style.width = `${size}px`;
+                            particleEl.style.height = `${size}px`;
+                            particleEl.style.left = `${e.clientX}px`;
+                            particleEl.style.top = `${e.clientY}px`;
+                            particleEl.style.opacity = '0.8';
+                            particleObj.active = true;
+
+                            const angle = Math.random() * Math.PI * 2;
+                            const speed = Math.random() * 50 + 30;
+                            const vx = Math.cos(angle) * speed;
+                            const vy = Math.sin(angle) * speed;
+                            let opacity = 0.8;
+                            let x = e.clientX;
+                            let y = e.clientY;
+
+                            function animateParticle() {
+                                if (opacity <= 0) {
+                                    particleEl.style.opacity = '0';
+                                    particleObj.active = false;
+                                    return;
+                                }
+                                x += vx / 10;
+                                y += vy / 10;
+                                opacity -= 0.02;
+                                particleEl.style.left = `${x}px`;
+                                particleEl.style.top = `${y}px`;
+                                particleEl.style.opacity = opacity.toString();
+                                requestAnimationFrame(animateParticle);
+                            }
+                            requestAnimationFrame(animateParticle);
+                        }
+                    }
+                });
+            }
+
+            function updateProgressBar() {
+                const scrollTop = mainContent.scrollTop;
+                const scrollHeight = mainContent.scrollHeight - mainContent.clientHeight;
+                const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                progressBar.style.width = `${scrollPercent}%`;
+            }
+
+            function revealSections() {
+                const mainContentClientHeight = mainContent.clientHeight;
+                const revealOffset = 100; 
+
+                sections.forEach(section => {
+                    const sectionRect = section.getBoundingClientRect();
+                    if (sectionRect.top < mainContentClientHeight - revealOffset) {
+                        if (!section.classList.contains('active')) {
+                             const delay = parseInt(section.getAttribute('data-delay') || '0', 10);
+                            setTimeout(() => {
+                                section.classList.add('active');
+                            }, delay);
+                        }
+                    }
+                });
+
+                infoBoxes.forEach(box => {
+                    const boxRect = box.getBoundingClientRect();
+                    if (boxRect.top < mainContentClientHeight - revealOffset) {
+                         if (!box.classList.contains('active')) {
+                            const delay = parseInt(box.getAttribute('data-delay') || '0', 10);
+                            setTimeout(() => {
+                                box.classList.add('active');
+                            }, delay);
+                        }
+                    }
+                });
+            }
+
+            function toggleTheme() {
+                document.body.classList.toggle('dark-mode');
+                const icon = themeToggle.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                } else {
+                    icon.className = 'fas fa-moon';
+                }
+            }
+
+            function toggleBackToTop() {
+                if (mainContent.scrollTop > 300) { 
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            }
+
+            function scrollToTop() {
+                mainContent.scrollTo({ 
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            function setupNavigation() {
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        navItems.forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+                        const sectionId = item.getAttribute('data-section');
+                        const sectionElement = document.getElementById(sectionId);
+                        if (sectionElement) {
+                            sectionElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start' // 'center' or 'end' might also be options
+                            });
+                        }
+                    });
+                });
+            }
+
+            function setupTooltips() {
+                terms.forEach(term => {
+                    term.addEventListener('click', (e) => {
+                        const rect = term.getBoundingClientRect();
+                        const title = term.textContent;
+                        const description = term.getAttribute('data-tooltip');
+
+                        tooltip.querySelector('h4').textContent = title;
+                        tooltip.querySelector('p').textContent = description;
+
+                        let tooltipTop = rect.top - tooltip.offsetHeight - 10;
+                        let tooltipLeft = rect.left;
+
+                        if (tooltipTop < 10) { 
+                            tooltipTop = rect.bottom + 10;
+                        }
+
+                        tooltip.style.left = `${tooltipLeft}px`;
+                        tooltip.style.top = `${tooltipTop}px`;
+
+                        const tooltipRect = tooltip.getBoundingClientRect();
+                        if (tooltipRect.left < 10) {
+                            tooltip.style.left = '10px';
+                        } else if (tooltipRect.right > window.innerWidth - 10) {
+                            tooltip.style.left = `${window.innerWidth - tooltip.offsetWidth - 10}px`;
+                        }
+
+                        tooltip.classList.add('active');
+                        e.stopPropagation();
+                    });
+                });
+
+                document.addEventListener('click', () => {
+                    tooltip.classList.remove('active');
+                });
+                 tooltip.addEventListener('click', (e) => { 
+                    e.stopPropagation();
+                });
+            }
+
+            // RNA 3D Simulation (DO NOT TOUCH)
+            function initRNASimulation() {
+                const canvas = document.getElementById('rna-simulation');
+                if (!canvas || !canvas.getContext) return;
+
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+
+                let isDragging = false;
+                let lastX, lastY;
+                let rotationX = 0;
+                let rotationY = 0;
+                let zoom = 1;
+
+                const RNA = {
+                    helix: {
+                        radius: 50,
+                        height: 300,
+                        turns: 10,
+                        segments: 100
+                    },
+                    bases: [],
+                    backbones: []
+                };
+
+                function generateRNA() {
+                    RNA.bases = [];
+                    RNA.backbones = [];
+                    for (let i = 0; i < 2; i++) {
+                        const backbone = { points: [], color: i === 0 ? '#0057b7' : '#ffd700' };
+                        for (let j = 0; j <= RNA.helix.segments; j++) {
+                            const angle = (j / RNA.helix.segments) * Math.PI * 2 * RNA.helix.turns;
+                            const z = (j / RNA.helix.segments) * RNA.helix.height - RNA.helix.height / 2;
+                            const x = Math.cos(angle + (i * Math.PI)) * RNA.helix.radius;
+                            const y = Math.sin(angle + (i * Math.PI)) * RNA.helix.radius;
+                            backbone.points.push({ x, y, z });
+                        }
+                        RNA.backbones.push(backbone);
+                    }
+                    for (let i = 0; i < RNA.helix.segments; i += 4) {
+                        if (i + 1 < RNA.backbones[0].points.length) {
+                            RNA.bases.push({ start: RNA.backbones[0].points[i], end: RNA.backbones[1].points[i], color: '#4cd137' });
+                        }
+                    }
+                    for (let i = 2; i < RNA.helix.segments; i += 4) {
+                        if (i + 1 < RNA.backbones[0].points.length) {
+                            RNA.bases.push({ start: RNA.backbones[0].points[i], end: RNA.backbones[1].points[i], color: '#e84118' });
+                        }
+                    }
+                }
+
+                function drawRNA() {
+                    if(!canvas.offsetParent) return; 
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const gradientBG = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradientBG.addColorStop(0, '#000913');
+                    gradientBG.addColorStop(1, '#000000');
+                    ctx.fillStyle = gradientBG;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    const allElements = [];
+                    RNA.backbones.forEach(backbone => {
+                        for (let i = 0; i < backbone.points.length - 1; i++) {
+                            const p1 = rotatePoint(backbone.points[i], rotationX, rotationY);
+                            const p2 = rotatePoint(backbone.points[i + 1], rotationX, rotationY);
+                            const avgZ = (p1.z + p2.z) / 2;
+                            allElements.push({ z: avgZ, draw: () => {
+                                ctx.beginPath();
+                                ctx.moveTo(canvas.width / 2 + p1.x * zoom, canvas.height / 2 + p1.y * zoom);
+                                ctx.lineTo(canvas.width / 2 + p2.x * zoom, canvas.height / 2 + p2.y * zoom);
+                                ctx.lineWidth = 4; ctx.strokeStyle = backbone.color; ctx.stroke();
+                                ctx.beginPath();
+                                ctx.arc(canvas.width / 2 + p1.x * zoom, canvas.height / 2 + p1.y * zoom, 5, 0, Math.PI * 2);
+                                ctx.fillStyle = backbone.color; ctx.fill();
+                            }});
+                        }
+                    });
+                    RNA.bases.forEach(base => {
+                        const p1 = rotatePoint(base.start, rotationX, rotationY);
+                        const p2 = rotatePoint(base.end, rotationX, rotationY);
+                        const avgZ = (p1.z + p2.z) / 2;
+                        allElements.push({ z: avgZ, draw: () => {
+                            ctx.beginPath();
+                            ctx.moveTo(canvas.width / 2 + p1.x * zoom, canvas.height / 2 + p1.y * zoom);
+                            ctx.lineTo(canvas.width / 2 + p2.x * zoom, canvas.height / 2 + p2.y * zoom);
+                            ctx.lineWidth = 2; ctx.strokeStyle = base.color; ctx.stroke();
+                            const midX = (p1.x + p2.x) / 2; const midY = (p1.y + p2.y) / 2;
+                            ctx.beginPath();
+                            ctx.arc(canvas.width / 2 + midX * zoom, canvas.height / 2 + midY * zoom, 4, 0, Math.PI * 2);
+                            ctx.fillStyle = base.color; ctx.fill();
+                        }});
+                    });
+                    allElements.sort((a, b) => a.z - b.z);
+                    allElements.forEach(element => element.draw());
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'; ctx.font = 'bold 14px Montserrat';
+                    ctx.fillText('РНК модель', 20, 30); ctx.fillText('Масштаб: ' + zoom.toFixed(1) + 'x', 20, 50);
+                }
+
+                function rotatePoint(point, rx, ry) {
+                    try {
+                        let y1 = point.y * Math.cos(rx) - point.z * Math.sin(rx);
+                        let z1 = point.z * Math.cos(rx) + point.y * Math.sin(rx);
+                        let x2 = point.x * Math.cos(ry) + z1 * Math.sin(ry);
+                        let z2 = z1 * Math.cos(ry) - point.x * Math.sin(ry);
+                        return { x: x2, y: y1, z: z2 };
+                    } catch (error) { console.error("Error in rotatePoint:", error); return { x: 0, y: 0, z: 0 }; }
+                }
+
+                canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; 
+                    const prompt = canvas.parentElement.querySelector('.interaction-prompt');
+                    if(prompt) prompt.style.opacity = '0';
+                });
+                canvas.addEventListener('mousemove', e => {
+                    if (isDragging) {
+                        const dx = e.clientX - lastX; const dy = e.clientY - lastY;
+                        rotationY += dx * 0.01; rotationX += dy * 0.01;
+                        lastX = e.clientX; lastY = e.clientY;
+                        drawRNA();
+                    }
+                });
+                canvas.addEventListener('mouseup', () => { isDragging = false; });
+                canvas.addEventListener('mouseleave', () => { isDragging = false; });
+
+                const zoomInBtn = document.getElementById('rnaZoomIn');
+                const zoomOutBtn = document.getElementById('rnaZoomOut');
+                const resetBtn = document.getElementById('rnaReset');
+                if (zoomInBtn) zoomInBtn.addEventListener('click', () => { zoom = Math.min(zoom + 0.2, 3); drawRNA(); });
+                if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { zoom = Math.max(zoom - 0.2, 0.5); drawRNA(); });
+                if (resetBtn) resetBtn.addEventListener('click', () => { rotationX = 0; rotationY = 0; zoom = 1; drawRNA(); });
+
+                generateRNA(); drawRNA();
+                let autoRotate = true;
+                function autoRotation() { if (autoRotate && !isDragging) { rotationY += 0.005; drawRNA(); } requestAnimationFrame(autoRotation); }
+                autoRotation();
+                canvas.addEventListener('mousedown', () => { autoRotate = false; });
+                let inactivityTimer;
+                canvas.addEventListener('mouseup', () => { clearTimeout(inactivityTimer); inactivityTimer = setTimeout(() => { autoRotate = true; }, 5000); });
+                window.addEventListener('resize', () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; drawRNA(); });
+            }
+
+            // Nano Drug Delivery Simulation (DO NOT TOUCH)
+            function initNanoDeliverySimulation() {
+                const canvas = document.getElementById('nano-delivery-simulation');
+                if (!canvas || !canvas.getContext) return;
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+                const simulation = { running: false, paused: false, cells: [], nanoparticles: [], bloodVessels: [] };
+
+                function generateCells() {
+                    simulation.cells = [];
+                    for (let i = 0; i < 50; i++) simulation.cells.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 15 + 20, color: '#3498db', type: 'normal', opacity: 1, receptors: [] });
+                    for (let i = 0; i < 15; i++) {
+                        const cell = { x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 20 + 25, color: '#e74c3c', type: 'cancer', opacity: 1, receptors: [] };
+                        for (let j = 0; j < 8; j++) { const angle = (j / 8) * Math.PI * 2; cell.receptors.push({ x: Math.cos(angle) * cell.radius, y: Math.sin(angle) * cell.radius, angle: angle, size: 4 }); }
+                        simulation.cells.push(cell);
+                    }
+                }
+                function generateBloodVessels() {
+                    simulation.bloodVessels = [];
+                    simulation.bloodVessels.push({ path: [{ x: 0, y: canvas.height / 2 }, { x: canvas.width / 4, y: canvas.height / 2 - 50 }, { x: canvas.width / 2, y: canvas.height / 2 }, { x: 3 * canvas.width / 4, y: canvas.height / 2 + 50 }, { x: canvas.width, y: canvas.height / 2 }], width: 40, color: '#8e44ad' });
+                    const branches = [ { start: 1, path: [{ x: canvas.width / 4, y: canvas.height / 2 - 50 }, { x: canvas.width / 3, y: canvas.height / 4 }, { x: canvas.width / 2, y: 0 }], width: 25 }, { start: 2, path: [{ x: canvas.width / 2, y: canvas.height / 2 }, { x: canvas.width / 2, y: 3 * canvas.height / 4 }, { x: canvas.width / 3, y: canvas.height }], width: 30 }, { start: 3, path: [{ x: 3 * canvas.width / 4, y: canvas.height / 2 + 50 }, { x: 7 * canvas.width / 8, y: canvas.height / 4 }, { x: canvas.width, y: 0 }], width: 20 }];
+                    branches.forEach(branch => simulation.bloodVessels.push({ path: branch.path, width: branch.width, color: '#8e44ad' }));
+                }
+                function drawBloodVessels() {
+                    simulation.bloodVessels.forEach(vessel => {
+                        ctx.beginPath(); ctx.moveTo(vessel.path[0].x, vessel.path[0].y);
+                        for (let i = 1; i < vessel.path.length; i++) ctx.lineTo(vessel.path[i].x, vessel.path[i].y);
+                        ctx.lineWidth = vessel.width; ctx.strokeStyle = vessel.color; ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(vessel.path[0].x, vessel.path[0].y);
+                        for (let i = 1; i < vessel.path.length; i++) ctx.lineTo(vessel.path[i].x, vessel.path[i].y);
+                        const time = Date.now() * 0.001; const flowPattern = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                        for (let i = 0; i < 10; i++) { const pos = ((time + i * 0.1) % 1); flowPattern.addColorStop(pos, 'rgba(136, 14, 79, 0.5)'); flowPattern.addColorStop((pos + 0.05) % 1, 'rgba(136, 14, 79, 0.1)');}
+                        ctx.lineWidth = vessel.width * 0.5; ctx.strokeStyle = flowPattern; ctx.stroke();
+                    });
+                }
+                function drawCells() {
+                    simulation.cells.forEach(cell => {
+                        ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius, 0, Math.PI * 2); ctx.fillStyle = cell.color + Math.floor(cell.opacity * 255).toString(16).padStart(2, '0'); ctx.fill();
+                        ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius * 0.4, 0, Math.PI * 2); ctx.fillStyle = cell.type === 'cancer' ? '#c0392b' : '#2980b9'; ctx.fill();
+                        if (cell.type === 'cancer') { cell.receptors.forEach(receptor => { ctx.beginPath(); ctx.arc(cell.x + receptor.x, cell.y + receptor.y, receptor.size, 0, Math.PI * 2); ctx.fillStyle = '#f39c12'; ctx.fill(); }); }
+                    });
+                }
+                function releaseNanoparticles() {
+                    if (!simulation.running || simulation.paused) return;
+                    for (let i = 0; i < 3; i++) simulation.nanoparticles.push({ x: 0, y: canvas.height / 2 + (Math.random() * 30 - 15), velocity: { x: Math.random() * 0.5 + 1, y: Math.random() * 0.4 - 0.2 }, radius: Math.random() * 2 + 3, color: '#ffd700', active: true, pathIndex: 0, pathProgress: 0, vessel: 0, targetCell: null, attachedToCell: false, drugReleased: false, drugEffect: 0 });
+                    setTimeout(releaseNanoparticles, 1000);
+                }
+                function updateNanoparticles() {
+                    simulation.nanoparticles.forEach(nano => {
+                        if (!nano.active) return;
+                        if (!nano.attachedToCell) {
+                            const vessel = simulation.bloodVessels[nano.vessel]; nano.pathProgress += 0.005;
+                            if (nano.pathProgress >= 1) { nano.pathIndex++; nano.pathProgress = 0; if (nano.pathIndex >= vessel.path.length - 1) { if (nano.vessel === 0 && Math.random() < 0.2) { nano.vessel = Math.floor(Math.random() * (simulation.bloodVessels.length - 1)) + 1; nano.pathIndex = 0; nano.pathProgress = 0; } else nano.active = false; } }
+                            if (nano.active && nano.pathIndex < vessel.path.length - 1) {
+                                const start = vessel.path[nano.pathIndex]; const end = vessel.path[nano.pathIndex + 1];
+                                nano.x = start.x + (end.x - start.x) * nano.pathProgress; nano.y = start.y + (end.y - start.y) * nano.pathProgress;
+                                nano.x += Math.sin(Date.now() * 0.01 + nano.pathProgress * 10) * vessel.width * 0.2; nano.y += Math.cos(Date.now() * 0.01 + nano.pathProgress * 10) * vessel.width * 0.2;
+                                if (!nano.targetCell) { for (let i = 0; i < simulation.cells.length; i++) { const cell = simulation.cells[i]; if (cell.type === 'cancer') { const dx = cell.x - nano.x; const dy = cell.y - nano.y; const distance = Math.sqrt(dx * dx + dy * dy); if (distance < 100) { nano.targetCell = i; break; } } } }
+                                if (nano.targetCell !== null) {
+                                    const cell = simulation.cells[nano.targetCell]; const dx = cell.x - nano.x; const dy = cell.y - nano.y; const distance = Math.sqrt(dx * dx + dy * dy);
+                                    if (distance < cell.radius) { nano.attachedToCell = true; let nearestReceptor = 0; let minDist = Infinity; cell.receptors.forEach((receptor, idx) => { const rdx = (cell.x + receptor.x) - nano.x; const rdy = (cell.y + receptor.y) - nano.y; const rdist = Math.sqrt(rdx * rdx + rdy * rdy); if (rdist < minDist) { minDist = rdist; nearestReceptor = idx; } }); nano.receptor = nearestReceptor; }
+                                    else { nano.x += dx * 0.02; nano.y += dy * 0.02; }
+                                }
+                            }
+                        } else {
+                            const cell = simulation.cells[nano.targetCell]; const receptor = cell.receptors[nano.receptor]; nano.x = cell.x + receptor.x; nano.y = cell.y + receptor.y;
+                            if (!nano.drugReleased) { setTimeout(() => { nano.drugReleased = true; nano.drugEffect = 0; }, 2000 + Math.random() * 1000); }
+                            if (nano.drugReleased) { nano.drugEffect += 0.02; if (nano.drugEffect > 1) { cell.opacity = Math.max(0, 1 - (nano.drugEffect - 1) * 0.5); if (cell.opacity <= 0.1) { simulation.cells.splice(nano.targetCell, 1); nano.active = false; simulation.nanoparticles.forEach(otherNano => { if (otherNano.targetCell > nano.targetCell) otherNano.targetCell--; else if (otherNano.targetCell === nano.targetCell) otherNano.active = false; }); } } }
+                        }
+                    });
+                }
+                function drawNanoparticles() {
+                    simulation.nanoparticles.forEach(nano => {
+                        if (!nano.active) return;
+                        ctx.beginPath(); ctx.arc(nano.x, nano.y, nano.radius, 0, Math.PI * 2); ctx.fillStyle = nano.color; ctx.fill();
+                        if (nano.attachedToCell && nano.drugReleased) { const effectRadius = nano.drugEffect * 50; const gradient = ctx.createRadialGradient(nano.x, nano.y, 0, nano.x, nano.y, effectRadius); gradient.addColorStop(0, 'rgba(255, 215, 0, 0.7)'); gradient.addColorStop(1, 'rgba(255, 215, 0, 0)'); ctx.beginPath(); ctx.arc(nano.x, nano.y, effectRadius, 0, Math.PI * 2); ctx.fillStyle = gradient; ctx.fill(); }
+                    });
+                }
+                function draw() {
+                    if (!canvas.offsetParent) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height); const gradientBG = ctx.createLinearGradient(0, 0, 0, canvas.height); gradientBG.addColorStop(0, '#000913'); gradientBG.addColorStop(1, '#000000'); ctx.fillStyle = gradientBG; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    drawBloodVessels(); drawCells(); drawNanoparticles();
+                    if (simulation.running && !simulation.paused) updateNanoparticles();
+                    requestAnimationFrame(draw);
+                }
+                const startBtn = document.getElementById('deliveryStart'); const pauseBtn = document.getElementById('deliveryPause'); const resetBtn = document.getElementById('deliveryReset');
+                if (startBtn) startBtn.addEventListener('click', () => { if (!simulation.running) { simulation.running = true; simulation.paused = false; generateCells(); generateBloodVessels(); simulation.nanoparticles = []; releaseNanoparticles(); } else if (simulation.paused) { simulation.paused = false; releaseNanoparticles(); } 
+                    const prompt = canvas.parentElement.querySelector('.interaction-prompt');
+                    if(prompt) prompt.style.opacity = '0';
+                });
+                if (pauseBtn) pauseBtn.addEventListener('click', () => { if (simulation.running) simulation.paused = !simulation.paused; });
+                if (resetBtn) resetBtn.addEventListener('click', () => { simulation.running = false; simulation.paused = false; simulation.nanoparticles = []; generateCells(); generateBloodVessels(); });
+                generateCells(); generateBloodVessels(); draw();
+                canvas.addEventListener('click', () => { if (!simulation.running && startBtn) startBtn.click(); });
+                window.addEventListener('resize', () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; if (!simulation.running) { generateCells(); generateBloodVessels(); } });
+            }
+
+            // CRISPR Simulation (DO NOT TOUCH)
+            function initCRISPRSimulation() {
+                const canvas = document.getElementById('crispr-simulation');
+                if (!canvas || !canvas.getContext) return;
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+                const simulation = { running: false, paused: false, step: 0, time: 0, dna: { sequence: [], mutationIndex: 0, x: canvas.width / 2, y: canvas.height / 2, width: canvas.width * 0.8, height: 40 }, crispr: { x: 0, y: 0, width: 60, height: 30, targetFound: false, cutting: false, repairing: false } };
+
+                function generateDNA() {
+                    simulation.dna.sequence = []; const bases = ['A', 'T', 'G', 'C'];
+                    for (let i = 0; i < 30; i++) { let base = bases[Math.floor(Math.random() * bases.length)]; let color; switch (base) { case 'A': color = '#3498db'; break; case 'T': color = '#e74c3c'; break; case 'G': color = '#2ecc71'; break; case 'C': color = '#f1c40f'; break; } simulation.dna.sequence.push({ base: base, color: color, complementary: base === 'A' ? 'T' : base === 'T' ? 'A' : base === 'G' ? 'C' : 'G', highlighted: false }); }
+                    simulation.dna.mutationIndex = Math.floor(Math.random() * 20) + 5; simulation.dna.sequence[simulation.dna.mutationIndex].base = 'M'; simulation.dna.sequence[simulation.dna.mutationIndex].color = '#9b59b6'; simulation.dna.sequence[simulation.dna.mutationIndex].highlighted = true;
+                }
+                function drawDNA() {
+                    const baseWidth = simulation.dna.width / simulation.dna.sequence.length; const baseHeight = simulation.dna.height; const startX = simulation.dna.x - simulation.dna.width / 2; const startY = simulation.dna.y;
+                    ctx.beginPath(); ctx.moveTo(startX, startY - baseHeight / 2); ctx.lineTo(startX + simulation.dna.width, startY - baseHeight / 2); ctx.strokeStyle = '#7f8c8d'; ctx.lineWidth = 5; ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(startX, startY + baseHeight / 2); ctx.lineTo(startX + simulation.dna.width, startY + baseHeight / 2); ctx.strokeStyle = '#7f8c8d'; ctx.lineWidth = 5; ctx.stroke();
+                    for (let i = 0; i < simulation.dna.sequence.length; i++) {
+                        const base = simulation.dna.sequence[i]; if (!base) continue; const x = startX + i * baseWidth + baseWidth / 2; const y = startY;
+                        ctx.beginPath(); ctx.rect(x - baseWidth / 4, y - baseHeight / 2, baseWidth / 2, baseHeight / 4); ctx.fillStyle = base.color; ctx.fill();
+                        ctx.beginPath(); ctx.rect(x - baseWidth / 4, y + baseHeight / 4, baseWidth / 2, baseHeight / 4); ctx.fillStyle = base.base === 'M' ? '#9b59b6' : (base.complementary === 'A' ? '#3498db' : base.complementary === 'T' ? '#e74c3c' : base.complementary === 'G' ? '#2ecc71' : '#f1c40f'); ctx.fill();
+                        ctx.beginPath(); ctx.moveTo(x, y - baseHeight / 4); ctx.lineTo(x, y + baseHeight / 4); ctx.strokeStyle = base.highlighted ? '#e74c3c' : '#7f8c8d'; ctx.lineWidth = base.highlighted ? 3 : 1; ctx.stroke();
+                        ctx.fillStyle = 'white'; ctx.font = 'bold 12px Montserrat'; ctx.textAlign = 'center'; ctx.fillText(base.base, x, y - baseHeight / 4 + 5); ctx.fillText(base.base === 'M' ? '?' : base.complementary, x, y + baseHeight / 3 + 5);
+                    }
+                }
+                function drawCRISPR() {
+                    const x = simulation.crispr.x; const y = simulation.crispr.y; const width = simulation.crispr.width; const height = simulation.crispr.height;
+                    ctx.beginPath(); ctx.ellipse(x, y, width / 2, height / 2, 0, 0, Math.PI * 2); const gradient = ctx.createRadialGradient(x, y, 0, x, y, width / 2); gradient.addColorStop(0, '#f39c12'); gradient.addColorStop(1, '#d35400'); ctx.fillStyle = gradient; ctx.fill();
+                    if (simulation.crispr.targetFound) { ctx.beginPath(); ctx.moveTo(x - 15, y - 10); ctx.lineTo(x + 15, y - 10); ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 3; ctx.stroke(); }
+                    if (simulation.crispr.cutting) { const time = simulation.time; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 20 * Math.cos(time * 5), y - 15 * Math.sin(time * 5)); ctx.strokeStyle = '#ecf0f1'; ctx.lineWidth = 3; ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 20 * Math.cos(time * 5 + Math.PI), y - 15 * Math.sin(time * 5 + Math.PI)); ctx.strokeStyle = '#ecf0f1'; ctx.lineWidth = 3; ctx.stroke(); }
+                    if (simulation.crispr.repairing) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 20); ctx.strokeStyle = '#2ecc71'; ctx.lineWidth = 3; ctx.stroke(); ctx.beginPath(); ctx.arc(x, y - 25, 5 + 3 * Math.sin(simulation.time * 10), 0, Math.PI * 2); ctx.fillStyle = '#2ecc71'; ctx.fill(); const rayLength = 10 + 5 * Math.sin(simulation.time * 10); for (let i = 0; i < 8; i++) { const angle = i * Math.PI / 4; ctx.beginPath(); ctx.moveTo(x + 5 * Math.cos(angle), y - 25 + 5 * Math.sin(angle)); ctx.lineTo(x + (5 + rayLength) * Math.cos(angle), y - 25 + (5 + rayLength) * Math.sin(angle)); ctx.strokeStyle = '#2ecc71'; ctx.lineWidth = 2; ctx.stroke(); } }
+                    ctx.fillStyle = 'white'; ctx.font = 'bold 12px Montserrat'; ctx.textAlign = 'center'; ctx.fillText('Cas9', x, y + 5);
+                }
+                function update() {
+                    if (!simulation.running || simulation.paused) return;
+                    simulation.time += 0.016;
+                    switch (simulation.step) {
+                        case 0: const baseWidth = simulation.dna.width / simulation.dna.sequence.length; const startX = simulation.dna.x - simulation.dna.width / 2; const targetX = startX + simulation.dna.mutationIndex * baseWidth + baseWidth / 2; const dx = targetX - simulation.crispr.x; simulation.crispr.x += dx * 0.02; if (Math.abs(dx) < 5) { simulation.crispr.targetFound = true; simulation.step = 1; simulation.lastActionTime = simulation.time; setTimeout(() => { if (simulation.running && !simulation.paused) { simulation.crispr.cutting = true; simulation.step = 2; } }, 1000); } break;
+                        case 2: if (simulation.time > simulation.lastActionTime + 3) { simulation.dna.sequence[simulation.dna.mutationIndex] = null; simulation.crispr.cutting = false; simulation.crispr.repairing = true; simulation.step = 3; simulation.lastActionTime = simulation.time; } break;
+                        case 3: if (simulation.time > simulation.lastActionTime + 4) { const repairBase = ['A', 'T', 'G', 'C'][Math.floor(Math.random() * 4)]; let color; switch (repairBase) { case 'A': color = '#3498db'; break; case 'T': color = '#e74c3c'; break; case 'G': color = '#2ecc71'; break; case 'C': color = '#f1c40f'; break; } simulation.dna.sequence[simulation.dna.mutationIndex] = { base: repairBase, color: color, complementary: repairBase === 'A' ? 'T' : repairBase === 'T' ? 'A' : repairBase === 'G' ? 'C' : 'G', highlighted: false }; simulation.crispr.repairing = false; simulation.step = 4; setTimeout(() => { if (simulation.running && !simulation.paused) { const moveAway = setInterval(() => { simulation.crispr.y -= 2; if (simulation.crispr.y < -50) { clearInterval(moveAway); ctx.fillStyle = 'rgba(46, 204, 113, 0.8)'; ctx.font = 'bold 24px Montserrat'; ctx.textAlign = 'center'; ctx.fillText('Ген успішно відредаговано!', canvas.width / 2, 50); setTimeout(() => { if (simulation.running) { simulation.step = 0; simulation.crispr.targetFound = false; simulation.crispr.x = 0; simulation.crispr.y = simulation.dna.y; generateDNA(); } }, 3000); } }, 16); } }, 1500); } break;
+                    }
+                }
+                function draw() {
+                    if (!canvas.offsetParent) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height); const gradientBG = ctx.createLinearGradient(0, 0, 0, canvas.height); gradientBG.addColorStop(0, '#000913'); gradientBG.addColorStop(1, '#000000'); ctx.fillStyle = gradientBG; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    if (!simulation.running) { ctx.fillStyle = 'white'; ctx.font = 'bold 20px Montserrat'; ctx.textAlign = 'center'; ctx.fillText('CRISPR-Cas9 Редагування Геному', canvas.width / 2, 50); ctx.font = '16px Montserrat'; ctx.fillText('Натисніть кнопку "Пуск" для запуску симуляції', canvas.width / 2, canvas.height - 50); ctx.fillStyle = '#bdc3c7'; ctx.font = '14px Montserrat'; ctx.fillText('Мутації в ДНК позначені фіолетовим кольором (M)', canvas.width / 2, canvas.height / 2 - 80); ctx.fillText('CRISPR-Cas9 знаходить, вирізає і виправляє мутацію', canvas.width / 2, canvas.height / 2 - 60); }
+                    drawDNA();
+                    if (simulation.running) { drawCRISPR(); ctx.fillStyle = 'white'; ctx.font = 'bold 16px Montserrat'; ctx.textAlign = 'left'; let stepText = ''; switch (simulation.step) { case 0: stepText = 'Пошук мутації...'; break; case 1: stepText = 'Мутацію знайдено!'; break; case 2: stepText = 'Вирізання пошкодженої ділянки...'; break; case 3: stepText = 'Відновлення ДНК...'; break; case 4: stepText = 'Редагування завершено!'; break; } ctx.fillText(stepText, 20, 30); }
+                    if (simulation.running && !simulation.paused) update();
+                    requestAnimationFrame(draw);
+                }
+                const startBtn = document.getElementById('crisprStart'); const pauseBtn = document.getElementById('crisprPause'); const resetBtn = document.getElementById('crisprReset');
+                if (startBtn) startBtn.addEventListener('click', () => { if (!simulation.running) { simulation.running = true; simulation.paused = false; simulation.step = 0; simulation.time = 0; simulation.lastActionTime = 0; generateDNA(); simulation.crispr.x = simulation.dna.x - simulation.dna.width / 2; simulation.crispr.y = simulation.dna.y; simulation.crispr.targetFound = false; simulation.crispr.cutting = false; simulation.crispr.repairing = false; } else if (simulation.paused) simulation.paused = false; 
+                    const prompt = canvas.parentElement.querySelector('.interaction-prompt');
+                    if(prompt) prompt.style.opacity = '0';
+                });
+                if (pauseBtn) pauseBtn.addEventListener('click', () => { if (simulation.running) simulation.paused = !simulation.paused; });
+                if (resetBtn) resetBtn.addEventListener('click', () => { simulation.running = false; simulation.paused = false; simulation.step = 0; simulation.time = 0; generateDNA(); simulation.crispr.x = 0; simulation.crispr.y = 0; simulation.crispr.targetFound = false; simulation.crispr.cutting = false; simulation.crispr.repairing = false; });
+                generateDNA(); draw();
+                canvas.addEventListener('click', () => { if (!simulation.running && startBtn) startBtn.click(); });
+                window.addEventListener('resize', () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; simulation.dna.x = canvas.width / 2; simulation.dna.y = canvas.height / 2; simulation.dna.width = canvas.width * 0.8; });
+            }
+        });
+    </script>
+</body>
+</html>
